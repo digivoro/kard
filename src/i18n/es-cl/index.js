@@ -1,4 +1,4 @@
 export default {
   failed: "Acción fallida",
-  success: "Accción exitosa"
+  success: "Acción exitosa"
 };

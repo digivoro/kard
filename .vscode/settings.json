@@ -2,6 +2,13 @@
   "vetur.validation.template": false,
   "vetur.format.enable": false,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
-  
-  "vetur.experimental.templateInterpolationService": true
+
+  "vetur.experimental.templateInterpolationService": true,
+
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#AAA",
+    "titleBar.activeBackground": "#23e0a8",
+    "titleBar.inactiveBackground": "#00ffb338"
+  }
 }
