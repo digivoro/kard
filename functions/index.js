@@ -11,7 +11,7 @@ cardsRouter.use(cors({ origin: true }));
 setsRouter.use(cors({ origin: true }));
 
 // Get all sets
-setsRouter.get("/sets", async (req, res) => {
+setsRouter.get("/", async (req, res) => {
   const sets = await admin
     .firestore()
     .collection("sets")
@@ -24,7 +24,7 @@ setsRouter.get("/sets", async (req, res) => {
 });
 
 // Get all cards
-cardsRouter.get("/cards", async (req, res) => {
+cardsRouter.get("/", async (req, res) => {
   const cards = await admin
     .firestore()
     .collection("cards")

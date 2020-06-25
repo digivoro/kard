@@ -1,24 +1,40 @@
 <template>
   <div>
-    <q-page class="flex flex-center">
-      <Card />
+    <q-page class="col flex flex-center">
+      <div class="row q-col-gutter-lg">
+        <CardFilter class="col-12 flex flex-center" />
+        <CardList class="col-12 col-md-9" />
+        <DeckList class="col-12 col-md-3" />
+      </div>
     </q-page>
   </div>
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
-import Card from "components/Card.vue";
+import { mapActions } from "vuex";
+import CardFilter from "components/CardFilter.vue";
+import CardList from "components/CardList.vue";
+import DeckList from "components/DeckList.vue";
 
 export default {
   name: "Builder",
 
   components: {
-    Card
+    CardList,
+    DeckList,
+    CardFilter
   },
 
   data() {
     return {};
+  },
+
+  methods: {
+    ...mapActions("cardModule/", ["getCardData"])
+  },
+
+  mounted() {
+    // this.getCardData();
   }
 };
 </script>
