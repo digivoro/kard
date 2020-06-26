@@ -3,6 +3,30 @@
   src: url(./fonts/MuseoModerno-VariableFont_wght.ttf);
 }
 
+@font-face {
+  font-family: "cinzel-regular";
+  src: url(./fonts/CinzelDecorative-Regular.ttf);
+}
+@font-face {
+  font-family: "cinzel-bold";
+  src: url(./fonts/CinzelDecorative-Bold.ttf);
+}
+@font-face {
+  font-family: "cinzel-black";
+  src: url(./fonts/CinzelDecorative-Black.ttf);
+}
+
 .museo {
   font-family: "museo";
+}
+
+.cinzel-regular {
+  font-family: "cinzel-regular";
+}
+.cinzel-bold {
+  font-family: "cinzel-bold";
+}
+
+.cinzel-black {
+  font-family: "cinzel-black";
 }

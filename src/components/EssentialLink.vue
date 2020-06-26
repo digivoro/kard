@@ -5,8 +5,8 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label class="museo text-h6">{{ title }}</q-item-label>
-      <q-item-label caption>
+      <q-item-label class="cinzel-bold text-h6">{{ title }}</q-item-label>
+      <q-item-label v-if="caption" caption>
         {{ caption }}
       </q-item-label>
     </q-item-section>

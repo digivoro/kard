@@ -10,7 +10,7 @@
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <q-toolbar-title class="museo text-h4">Kard</q-toolbar-title>
+        <q-toolbar-title class="cinzel-black text-h4">Kard</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -22,7 +22,7 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label header class="text-grey-9 museo">
+        <q-item-label header class="cinzel-bold text-grey-9">
           Explora Kard
         </q-item-label>
         <EssentialLink

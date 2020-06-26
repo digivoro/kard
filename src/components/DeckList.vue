@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-toolbar class="bg-primary text-white shadow-2">
-      <q-toolbar-title class="museo">Mazo</q-toolbar-title>
+      <q-toolbar-title class="cinzel-bold">Mazo</q-toolbar-title>
     </q-toolbar>
 
     <q-list bordered>

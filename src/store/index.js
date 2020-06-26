@@ -7,6 +7,16 @@ Vue.use(Vuex);
 
 export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
+    state: {
+      advancedFilter: false
+    },
+
+    mutations: {
+      TOGGLE_ADVANCED_FILTER: state => {
+        state.advancedFilter = !state.advancedFilter;
+      }
+    },
+
     modules: {
       cardModule
     },

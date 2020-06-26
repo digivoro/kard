@@ -2,7 +2,7 @@
   <div>
     <div class="row q-col-gutter-md">
       <Card
-        class="col-2"
+        class="col-4 col-sm-3 col-md-2"
         v-for="(card, index) in cardList"
         :key="index"
         :name="card.name"

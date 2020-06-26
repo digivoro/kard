@@ -1,10 +1,11 @@
 <template>
   <div>
-    <q-page class="col flex flex-center">
+    <q-page class="col flex flex-center q-pa-lg">
       <div class="row q-col-gutter-lg">
         <CardFilter class="col-12 flex flex-center" />
-        <CardList class="col-12 col-md-9" />
+        <CardGrid class="col-12 col-md-9" />
         <DeckList class="col-12 col-md-3" />
+        <AdvancedFilter />
       </div>
     </q-page>
   </div>
@@ -13,16 +14,18 @@
 <script>
 import { mapActions } from "vuex";
 import CardFilter from "components/CardFilter.vue";
-import CardList from "components/CardList.vue";
+import AdvancedFilter from "components/AdvancedFilter.vue";
+import CardGrid from "components/CardGrid.vue";
 import DeckList from "components/DeckList.vue";
 
 export default {
   name: "Builder",
 
   components: {
-    CardList,
+    CardGrid,
     DeckList,
-    CardFilter
+    CardFilter,
+    AdvancedFilter
   },
 
   data() {
