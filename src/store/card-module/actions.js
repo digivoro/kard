@@ -1,9 +1,17 @@
-import Axios from "axios";
+// import Axios from "axios";
+import { firebaseAuth, firebaseDb } from "../../boot/firebase";
 
-const CARDS_FUNCTION_URL =
-  "https://us-central1-kard-37937.cloudfunctions.net/cards";
+const cartasRef = firebaseDb.collection("cartas");
 
-export async function getCardData(context) {
-  let res = await Axios.get(`${CARDS_FUNCTION_URL}/`);
-  console.log(res);
+export async function obtenerCartas({ commit }) {
+  try {
+    let collection = await cartasRef.limit(20).get();
+    let cartas = collection.docs.map(doc => {
+      return { id: doc.id, data: doc.data() };
+    });
+    console.log("cartas:", cartas);
+    commit("INICIALIZAR_DATOS", cartas);
+  } catch (error) {
+    console.log(error);
+  }
 }

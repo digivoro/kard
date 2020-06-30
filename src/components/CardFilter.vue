@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 
 export default {
   data() {
@@ -136,6 +136,10 @@ export default {
     onAdvancedFilterClick: function() {
       this.TOGGLE_ADVANCED_FILTER();
     }
+  },
+
+  computed: {
+    ...mapState("cardModule", ["filtros"])
   }
 };
 </script>

@@ -6,51 +6,76 @@
 
     <q-list bordered>
       <q-item
-        v-for="contact in contacts"
-        :key="contact.id"
+        v-for="(carta, index) in getMazoPrincipal"
+        :key="index"
         class="q-my-sm"
         clickable
         v-ripple
       >
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
-            {{ contact.letter }}
+            {{ carta.copias }}
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ contact.name }}</q-item-label>
-          <q-item-label caption lines="1">{{ contact.email }}</q-item-label>
+          <q-item-label>{{ carta.nombre }}</q-item-label>
         </q-item-section>
 
         <q-item-section side>
-          <q-icon name="chat_bubble" color="green" />
+          <q-icon name="circle" color="accent" />
         </q-item-section>
       </q-item>
 
+      <!-- Sideboard -->
       <q-separator />
-      <q-item-label header>Offline</q-item-label>
-
+      <q-item-label header>Sideboard</q-item-label>
       <q-item
-        v-for="contact in offline"
-        :key="contact.id"
+        v-for="carta in getSideboard"
+        :key="carta.id"
         class="q-mb-sm"
         clickable
         v-ripple
       >
         <q-item-section avatar>
           <q-avatar>
-            <img :src="`https://cdn.quasar.dev/img/${contact.avatar}`" />
+            3
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ contact.name }}</q-item-label>
-          <q-item-label caption lines="1">{{ contact.email }}</q-item-label>
+          <q-item-label>{{ carta.nombre }}</q-item-label>
         </q-item-section>
 
         <q-item-section side>
           <q-icon name="chat_bubble" color="grey" />
+        </q-item-section>
+      </q-item>
+      <!-- Oro Inicial -->
+      <q-separator />
+
+      <q-item-label header>Oro Inicial</q-item-label>
+      <q-item class="q-mb-sm" clickable v-ripple>
+        <q-item-section>
+          <q-item-label>{{ getOroInicial.nombre }}</q-item-label>
+        </q-item-section>
+
+        <q-item-section side>
+          <q-icon name="circle" color="accent" />
+        </q-item-section>
+      </q-item>
+
+      <!-- Monumento -->
+      <q-separator />
+
+      <q-item-label header>Monumento</q-item-label>
+      <q-item class="q-mb-sm" clickable v-ripple>
+        <q-item-section>
+          <q-item-label>{{ getMonumento.nombre }}</q-item-label>
+        </q-item-section>
+
+        <q-item-section side>
+          <q-icon name="circle" color="secondary" />
         </q-item-section>
       </q-item>
     </q-list>
@@ -58,56 +83,22 @@
 </template>
 
 <script>
-const contacts = [
-  {
-    id: 1,
-    name: "Ruddy Jedrzej",
-    email: "rjedrzej0@discuz.net",
-    letter: "R"
-  },
-  {
-    id: 2,
-    name: "Mallorie Alessandrini",
-    email: "malessandrini1@marketwatch.com",
-    letter: "M"
-  },
-  {
-    id: 3,
-    name: "Elisabetta Wicklen",
-    email: "ewicklen2@microsoft.com",
-    letter: "E"
-  },
-  {
-    id: 4,
-    name: "Seka Fawdrey",
-    email: "sfawdrey3@wired.com",
-    letter: "S"
-  }
-];
-
-const offline = [
-  {
-    id: 5,
-    name: "Brunhilde Panswick",
-    email: "bpanswick4@csmonitor.com",
-    avatar: "avatar2.jpg"
-  },
-  {
-    id: 6,
-    name: "Winfield Stapforth",
-    email: "wstapforth5@pcworld.com",
-    avatar: "avatar6.jpg"
-  }
-];
+import { mapGetters } from "vuex";
 
 export default {
   name: "DeckList",
 
   data() {
-    return {
-      contacts,
-      offline
-    };
+    return {};
+  },
+
+  computed: {
+    ...mapGetters("cardModule", [
+      "getMazoPrincipal",
+      "getSideboard",
+      "getOroInicial",
+      "getMonumento"
+    ])
   }
 };
 </script>

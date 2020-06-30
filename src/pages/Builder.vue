@@ -3,8 +3,8 @@
     <q-page class="col flex flex-center q-pa-lg">
       <div class="row q-col-gutter-lg">
         <CardFilter class="col-12 flex flex-center" />
-        <CardGrid class="col-12 col-md-9" />
-        <DeckList class="col-12 col-md-3" />
+        <CardGrid class="col-12  col-sm-8 col-md-9" />
+        <DeckList class="col-12  col-sm-4 col-md-3" />
         <AdvancedFilter />
       </div>
     </q-page>
@@ -33,11 +33,11 @@ export default {
   },
 
   methods: {
-    ...mapActions("cardModule/", ["getCardData"])
+    ...mapActions("cardModule/", ["obtenerCartas"])
   },
 
   mounted() {
-    // this.getCardData();
+    this.obtenerCartas();
   }
 };
 </script>

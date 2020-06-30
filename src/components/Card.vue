@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <q-responsive :ratio="231 / 331" class="col">
-      <q-card class="column">
+      <q-card class="column" @click="onCardClick(this)">
         <q-img class="col" :src="img" />
       </q-card>
     </q-responsive>
@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import Firebase from "boot/firebase";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "Card",
-
-  data: function() {
+  data() {
     return {};
   },
 
@@ -24,18 +22,11 @@ export default {
   },
 
   methods: {
-    // getImgUrl: async function() {
-    //   let imgRef = await Firebase.storage().ref("img/sets/olimpia/108.jpg");
-    //   let imgURL = await imgRef.getDownloadURL();
-    //   console.log(imgURL);
-    //   return imgURL.i;
-    // }
-  },
+    ...mapMutations("cardModule", ["AGREGAR_A_MAZO"]),
 
-  computed: {
-    // getUrl: function() {
-    //   return this.getImgUrl();
-    // }
+    onCardClick: function(carta) {
+      this.AGREGAR_A_MAZO(carta);
+    }
   }
 };
 </script>

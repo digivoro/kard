@@ -1,5 +1,9 @@
 <template>
   <q-layout view="hHh lpr lFf">
+    <!-- Loading bar -->
+    <q-ajax-bar ref="bar" position="top" color="accent" size="15px" />
+
+    <!-- Header -->
     <q-header elevated>
       <q-toolbar class="q-my-lg">
         <q-btn
