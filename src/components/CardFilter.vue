@@ -55,16 +55,20 @@
           <div class="row q-col-gutter-sm">
             <div v-for="(item, index) in tipos" :key="index" class="col-2">
               <q-btn
-                :color="item.disabled ? 'grey' : 'accent'"
+                :color="filtros.tipos[item.tipo] ? 'accent' : 'grey'"
                 size="lg"
-                :glossy="item.disabled ? false : true"
-                :icon="`img:${item.disabled ? item.disabledImage : item.image}`"
-                @click="item.disabled = !item.disabled"
+                :glossy="filtros.tipos[item.tipo] ? true : false"
+                :icon="
+                  `img:${
+                    filtros.tipos[item.tipo] ? item.image : item.disabledImage
+                  }`
+                "
+                @click="TOGGLE_FILTRO_TIPO(item.tipo)"
               >
                 <q-tooltip
                   :content-class="
                     `${
-                      item.disabled ? 'bg-grey' : 'bg-accent'
+                      filtros.tipos[item.tipo] ? 'bg-accent' : 'bg-grey'
                     } text-black cinzel-bold`
                   "
                   content-style="font-size: 16px"
@@ -92,36 +96,42 @@ export default {
       text: "",
       tipos: [
         {
+          tipo: "aliado",
           label: "Aliado",
           image: "icons/png/guerrero-color.png",
           disabledImage: "icons/png/guerrero-line.png",
           disabled: false
         },
         {
+          tipo: "talisman",
           label: "Talismán",
           image: "icons/png/talisman-color.png",
           disabledImage: "icons/png/talisman-line.png",
           disabled: false
         },
         {
+          tipo: "arma",
           label: "Arma",
           image: "icons/png/espada-color.png",
           disabledImage: "icons/png/espada-line.png",
           disabled: false
         },
         {
+          tipo: "totem",
           label: "Tótem",
           image: "icons/png/totem-color.png",
           disabledImage: "icons/png/totem-line.png",
           disabled: false
         },
         {
+          tipo: "oro",
           label: "Oro",
           image: "icons/png/oro-color.png",
           disabledImage: "icons/png/oro-line.png",
           disabled: false
         },
         {
+          tipo: "monumento",
           label: "Monumento",
           image: "icons/png/piramide-color.png",
           disabledImage: "icons/png/piramide-line.png",
@@ -133,6 +143,8 @@ export default {
 
   methods: {
     ...mapMutations(["TOGGLE_ADVANCED_FILTER"]),
+    ...mapMutations("cardModule", ["TOGGLE_FILTRO_TIPO"]),
+
     onAdvancedFilterClick: function() {
       this.TOGGLE_ADVANCED_FILTER();
     }

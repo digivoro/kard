@@ -4,7 +4,7 @@
       <q-toolbar-title class="cinzel-bold">Mazo</q-toolbar-title>
     </q-toolbar>
 
-    <q-list bordered>
+    <q-list bordered dense>
       <q-item
         v-for="(carta, index) in getMazoPrincipal"
         :key="index"
@@ -13,17 +13,24 @@
         v-ripple
       >
         <q-item-section avatar>
-          <q-avatar color="primary" text-color="white">
+          <q-avatar color="primary" text-color="white" size="sm">
             {{ carta.copias }}
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ carta.nombre }}</q-item-label>
+          <q-item-label>
+            <q-icon size="sm">
+              <q-img :src="`icons/png/${iconFile(carta.idTipo)}.png`"> </q-img>
+            </q-icon>
+            {{ carta.nombre }}
+          </q-item-label>
         </q-item-section>
 
         <q-item-section side>
-          <q-icon name="circle" color="accent" />
+          <q-avatar color="primary" text-color="white" size="sm">
+            {{ carta.costo }}
+          </q-avatar>
         </q-item-section>
       </q-item>
 
@@ -51,6 +58,7 @@
           <q-icon name="chat_bubble" color="grey" />
         </q-item-section>
       </q-item>
+
       <!-- Oro Inicial -->
       <q-separator />
 
@@ -90,6 +98,23 @@ export default {
 
   data() {
     return {};
+  },
+  methods: {
+    iconFile(tipo) {
+      if (tipo === 1) {
+        return "guerrero-color";
+      } else if (tipo === 2) {
+        return "talisman-color";
+      } else if (tipo === 3) {
+        return "espada-color";
+      } else if (tipo === 4) {
+        return "totem-color";
+      } else if (tipo === 5) {
+        return "piramide-color";
+      } else {
+        return "oro-color";
+      }
+    }
   },
 
   computed: {

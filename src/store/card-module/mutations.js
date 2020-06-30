@@ -13,3 +13,7 @@ export function AGREGAR_A_MAZO(state, { carta, zonaMazo }) {
     cartaBuscada.copias = cartaBuscada.copias + 1;
   }
 }
+
+export function TOGGLE_FILTRO_TIPO(state, tipo) {
+  state.filtros.tipos[tipo] = !state.filtros.tipos[tipo];
+}
