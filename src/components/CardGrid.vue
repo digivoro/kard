@@ -2,6 +2,17 @@
   <div>
     <q-toolbar class="bg-primary text-white shadow-2 q-mb-md">
       <q-toolbar-title class="cinzel-bold">Cartas</q-toolbar-title>
+      <q-btn-group push>
+        <q-btn color="secondary" glossy text-color="black" label="Principal" />
+        <q-btn color="secondary" glossy text-color="black" label="Sideboard" />
+        <q-btn
+          color="secondary"
+          glossy
+          text-color="black"
+          label="Oro Inicial"
+        />
+        <q-btn color="secondary" glossy text-color="black" label="Monumento" />
+      </q-btn-group>
     </q-toolbar>
     <div class="row q-col-gutter-md">
       <div
@@ -27,7 +38,12 @@ export default {
 
   data: function() {
     return {
-      agregarAZona: "principal"
+      agregarAZona: "principal",
+      zonas: [
+        {
+          nombre: "principal" // ACA ESTOY TRABAJANDO
+        }
+      ]
     };
   },
 
