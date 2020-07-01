@@ -15,6 +15,12 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
         <q-toolbar-title class="cinzel-black text-h4">Kard</q-toolbar-title>
+
+        <q-form v-if="!sesion.usuarioActual" class="row q-gutter-md">
+          <q-btn dark color="accent" push no-caps @click="loginDialog = true"
+            >Iniciar Sesión</q-btn
+          >
+        </q-form>
       </q-toolbar>
     </q-header>
 
@@ -38,6 +44,40 @@
     </q-drawer>
 
     <q-page-container>
+      <q-dialog v-model="loginDialog">
+        <q-card style="min-width: 350px">
+          <q-card-section>
+            <div class="text-h6">Iniciar sesión</div>
+          </q-card-section>
+          <q-card-section class="q-pt-none q-gutter-md">
+            <q-input
+              filled
+              autofocus
+              bg-color="white"
+              label="Correo electrónico"
+              type="text"
+            ></q-input>
+            <q-input
+              filled
+              bg-color="white"
+              label="Contraseña"
+              type="password"
+            ></q-input>
+          </q-card-section>
+          <q-card-actions align="right" class="text-primary">
+            <q-btn flat label="Cancel" v-close-popup />
+            <q-btn
+              dark
+              color="accent"
+              label="Iniciar Sesión"
+              @click="onLoginClick"
+              push
+              no-caps
+              v-close-popup
+            ></q-btn>
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
       <router-view />
     </q-page-container>
   </q-layout>
@@ -45,6 +85,7 @@
 
 <script>
 import EssentialLink from "components/EssentialLink.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "MainLayout",
@@ -55,13 +96,15 @@ export default {
 
   data() {
     return {
-      leftDrawerOpen: false,
+      prompt: false,
+      loginDialog: false,
+      leftDrawerOpen: true,
       essentialLinks: [
         {
           title: "Inicio",
           caption: "",
           icon: "home",
-          link: "/inicio"
+          link: "/"
         },
         {
           title: "Constructor",
@@ -77,6 +120,16 @@ export default {
         }
       ]
     };
+  },
+
+  computed: {
+    ...mapState(["sesion"])
+  },
+
+  mounted() {
+    setTimeout(() => {
+      this.leftDrawerOpen = false;
+    }, 3000);
   }
 };
 </script>

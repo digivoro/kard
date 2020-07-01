@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    Perfil de usuario
+  </div>
 </template>
 
 <script>
