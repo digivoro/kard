@@ -10,9 +10,8 @@ export async function obtenerCartas({ commit }) {
     // LoadingBar.start();
     let collection = await cartasRef.limit(20).get();
     let cartas = collection.docs.map(doc => {
-      return { id: doc.id, data: doc.data() };
+      return { docId: doc.id, ...doc.data() };
     });
-    console.log("cartas:", cartas);
     commit("INICIALIZAR_DATOS", cartas);
     // LoadingBar.stop();
   } catch (error) {

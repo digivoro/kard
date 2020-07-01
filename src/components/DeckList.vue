@@ -5,6 +5,8 @@
     </q-toolbar>
 
     <q-list bordered dense>
+      <!-- Mazo principal -->
+      <q-item-label header>Principal</q-item-label>
       <q-item
         v-for="(carta, index) in getMazoPrincipal"
         :key="index"
@@ -14,6 +16,12 @@
         @click="onQuitarClick(carta, `principal`)"
       >
         <q-item-section avatar>
+          <q-icon size="sm">
+            <q-img :src="`icons/png/${iconFile(carta.idTipo)}.png`"> </q-img>
+          </q-icon>
+        </q-item-section>
+
+        <q-item-section avatar>
           <q-avatar color="primary" text-color="white" size="sm">
             {{ carta.copias }}
           </q-avatar>
@@ -21,15 +29,17 @@
 
         <q-item-section>
           <q-item-label>
-            <q-icon size="sm">
-              <q-img :src="`icons/png/${iconFile(carta.idTipo)}.png`"> </q-img>
-            </q-icon>
             {{ carta.nombre }}
           </q-item-label>
         </q-item-section>
 
         <q-item-section side>
-          <q-avatar color="primary" text-color="white" size="sm">
+          <q-avatar
+            class="text-bold"
+            color="accent"
+            text-color="dark"
+            size="sm"
+          >
             {{ carta.costo }}
           </q-avatar>
         </q-item-section>
@@ -39,25 +49,40 @@
       <q-separator />
       <q-item-label header>Sideboard</q-item-label>
       <q-item
-        v-for="carta in getSideboard"
-        :key="carta.id"
-        class="q-mb-sm"
+        v-for="(carta, index) in getSideboard"
+        :key="index"
+        class="q-my-sm"
         clickable
         v-ripple
         @click="onQuitarClick(carta, `sideboard`)"
       >
         <q-item-section avatar>
-          <q-avatar>
-            3
+          <q-icon size="sm">
+            <q-img :src="`icons/png/${iconFile(carta.idTipo)}.png`"> </q-img>
+          </q-icon>
+        </q-item-section>
+
+        <q-item-section avatar>
+          <q-avatar color="primary" text-color="white" size="sm">
+            {{ carta.copias }}
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ carta.nombre }}</q-item-label>
+          <q-item-label>
+            {{ carta.nombre }}
+          </q-item-label>
         </q-item-section>
 
         <q-item-section side>
-          <q-icon name="chat_bubble" color="grey" />
+          <q-avatar
+            color="accent"
+            text-color="dark"
+            size="sm"
+            class="text-bold"
+          >
+            {{ carta.costo }}
+          </q-avatar>
         </q-item-section>
       </q-item>
 
@@ -71,13 +96,15 @@
         clickable
         v-ripple
         @click="onQuitarClick(carta, `oroInicial`)"
+        v-if="Object.keys(getOroInicial).length"
       >
+        <q-item-section avatar>
+          <q-icon size="sm">
+            <q-img :src="`icons/png/oro-color.png`"> </q-img>
+          </q-icon>
+        </q-item-section>
         <q-item-section>
           <q-item-label>{{ getOroInicial.nombre }}</q-item-label>
-        </q-item-section>
-
-        <q-item-section side>
-          <q-icon name="circle" color="accent" />
         </q-item-section>
       </q-item>
 
@@ -90,13 +117,15 @@
         clickable
         v-ripple
         @click="onQuitarClick(carta, `monumento`)"
+        v-if="Object.keys(getMonumento).length"
       >
+        <q-item-section avatar>
+          <q-icon size="sm">
+            <q-img :src="`icons/png/piramide-color.png`"> </q-img>
+          </q-icon>
+        </q-item-section>
         <q-item-section>
           <q-item-label>{{ getMonumento.nombre }}</q-item-label>
-        </q-item-section>
-
-        <q-item-section side>
-          <q-icon name="circle" color="secondary" />
         </q-item-section>
       </q-item>
 
@@ -107,9 +136,7 @@
         <!-- Nombre -->
         <q-item class="q-mb-sm">
           <q-item-section avatar>
-            <q-avatar color="primary" text-color="white" size="md">
-              <q-icon name="settings" color="white" size="sm" />
-            </q-avatar>
+            <q-icon name="settings" color="white" size="sm" />
           </q-item-section>
           <q-item-section>
             <q-input dense label="Nombre" v-model="nombre"></q-input>
@@ -119,9 +146,7 @@
         <!-- Toggle Publico -->
         <q-item class="q-mb-sm text-bold" dense>
           <q-item-section avatar>
-            <q-avatar color="primary" text-color="white" size="md">
-              <q-icon name="settings" color="white" size="sm" />
-            </q-avatar>
+            <q-icon name="settings" color="white" size="sm" />
           </q-item-section>
           <q-item-section>
             <q-item-label>
@@ -134,20 +159,18 @@
         </q-item>
 
         <!-- Guardar -->
-        <q-item
-          class="q-mb-sm bg-accent text-bold"
-          clickable
-          v-ripple
-          @click="onGuardarClick"
-        >
-          <q-item-section avatar>
-            <q-avatar color="orange-10" text-color="white" size="md">
-              <q-icon name="save" color="white" size="sm" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Guardar mazo</q-item-label>
-          </q-item-section>
+        <q-item class="flex flex-center">
+          <q-btn
+            dense
+            push
+            stack
+            text-color="dark"
+            color="accent"
+            icon="save"
+            @click="onGuardarClick"
+          >
+            Guardar mazo
+          </q-btn>
         </q-item>
       </div>
     </q-list>

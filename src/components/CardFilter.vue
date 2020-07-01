@@ -7,17 +7,17 @@
             dark
             dense
             standout
-            v-model="text"
+            v-model="inputTexto"
             input-class="text-right"
             class=""
           >
             <template v-slot:append>
-              <q-icon v-if="text === ''" name="search" />
+              <q-icon v-if="inputTexto === ``" name="search" />
               <q-icon
                 v-else
                 name="clear"
                 class="cursor-pointer"
-                @click="text = ''"
+                @click="inputTexto = ``"
               />
             </template>
           </q-input>
@@ -53,22 +53,22 @@
 
         <div class="col-12 col-sm-7 order-xs-last">
           <div class="row q-col-gutter-sm">
-            <div v-for="(item, index) in tipos" :key="index" class="col-2">
+            <div v-for="(tipo, index) in tipos" :key="index" class="col-2">
               <q-btn
-                :color="filtros.tipos[item.tipo] ? 'accent' : 'grey'"
+                :color="filtros.tipos[tipo.nombre] ? 'accent' : 'grey'"
                 size="lg"
-                :glossy="filtros.tipos[item.tipo] ? true : false"
+                :glossy="filtros.tipos[tipo.nombre] ? true : false"
                 :icon="
                   `img:${
-                    filtros.tipos[item.tipo] ? item.image : item.disabledImage
+                    filtros.tipos[tipo.nombre] ? tipo.image : tipo.disabledImage
                   }`
                 "
-                @click="TOGGLE_FILTRO_TIPO(item.tipo)"
+                @click="TOGGLE_FILTRO_TIPO(tipo.nombre)"
               >
                 <q-tooltip
                   :content-class="
                     `${
-                      filtros.tipos[item.tipo] ? 'bg-accent' : 'bg-grey'
+                      filtros.tipos[tipo.nombre] ? 'bg-accent' : 'bg-grey'
                     } text-black cinzel-bold`
                   "
                   content-style="font-size: 16px"
@@ -76,7 +76,7 @@
                   transition-hide="rotate"
                   :offset="[10, 10]"
                 >
-                  {{ item.label }}
+                  {{ tipo.label }}
                 </q-tooltip>
               </q-btn>
             </div>
@@ -92,58 +92,15 @@ import { mapMutations, mapState } from "vuex";
 
 export default {
   data() {
-    return {
-      text: "",
-      tipos: [
-        {
-          tipo: "aliado",
-          label: "Aliado",
-          image: "icons/png/guerrero-color.png",
-          disabledImage: "icons/png/guerrero-line.png",
-          disabled: false
-        },
-        {
-          tipo: "talisman",
-          label: "Talismán",
-          image: "icons/png/talisman-color.png",
-          disabledImage: "icons/png/talisman-line.png",
-          disabled: false
-        },
-        {
-          tipo: "arma",
-          label: "Arma",
-          image: "icons/png/espada-color.png",
-          disabledImage: "icons/png/espada-line.png",
-          disabled: false
-        },
-        {
-          tipo: "totem",
-          label: "Tótem",
-          image: "icons/png/totem-color.png",
-          disabledImage: "icons/png/totem-line.png",
-          disabled: false
-        },
-        {
-          tipo: "oro",
-          label: "Oro",
-          image: "icons/png/oro-color.png",
-          disabledImage: "icons/png/oro-line.png",
-          disabled: false
-        },
-        {
-          tipo: "monumento",
-          label: "Monumento",
-          image: "icons/png/piramide-color.png",
-          disabledImage: "icons/png/piramide-line.png",
-          disabled: false
-        }
-      ]
-    };
+    return {};
   },
 
   methods: {
     ...mapMutations(["TOGGLE_ADVANCED_FILTER"]),
-    ...mapMutations("cardModule", ["TOGGLE_FILTRO_TIPO"]),
+    ...mapMutations("cardModule", [
+      "TOGGLE_FILTRO_TIPO",
+      "ACTUALIZAR_INPUT_TEXTO"
+    ]),
 
     onAdvancedFilterClick: function() {
       this.TOGGLE_ADVANCED_FILTER();
@@ -151,7 +108,16 @@ export default {
   },
 
   computed: {
-    ...mapState("cardModule", ["filtros"])
+    ...mapState("cardModule", ["filtros", "tipos"]),
+
+    inputTexto: {
+      get() {
+        return this.filtros.texto;
+      },
+      set(valor) {
+        this.ACTUALIZAR_INPUT_TEXTO(valor);
+      }
+    }
   }
 };
 </script>

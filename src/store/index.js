@@ -8,7 +8,13 @@ Vue.use(Vuex);
 export default function(/* { ssrContext } */) {
   const Store = new Vuex.Store({
     state: {
-      advancedFilter: false
+      advancedFilter: false,
+      sesion: {
+        usuarioActual: null,
+        jugador: {
+          idJugador: 0
+        }
+      }
     },
 
     mutations: {
@@ -16,6 +22,10 @@ export default function(/* { ssrContext } */) {
         state.advancedFilter = !state.advancedFilter;
       }
     },
+
+    actions: {},
+
+    getters: {},
 
     modules: {
       cardModule

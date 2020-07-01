@@ -2,18 +2,16 @@
   <div>
     <q-toolbar class="bg-primary text-white shadow-2 q-mb-md">
       <q-toolbar-title class="cinzel-bold">Cartas</q-toolbar-title>
-      <q-btn-group push>
-        <q-btn color="secondary" glossy text-color="black" label="Principal" />
-        <q-btn color="secondary" glossy text-color="black" label="Sideboard" />
-        <q-btn
-          color="secondary"
-          glossy
-          text-color="black"
-          label="Oro Inicial"
-        />
-        <q-btn color="secondary" glossy text-color="black" label="Monumento" />
-      </q-btn-group>
+      <q-select
+        dense
+        options-dense
+        dark
+        v-model="selector"
+        :options="zonas"
+        label="Agregar a"
+      />
     </q-toolbar>
+
     <div class="row q-col-gutter-md">
       <div
         class="col-4 col-sm-4 col-md-2"
@@ -38,11 +36,12 @@ export default {
 
   data: function() {
     return {
-      agregarAZona: "principal",
+      selector: { label: "Principal", value: "principal" },
       zonas: [
-        {
-          nombre: "principal" // ACA ESTOY TRABAJANDO
-        }
+        { label: "Principal", value: "principal" },
+        { label: "Sideboard", value: "sideboard" },
+        { label: "Oro Inicial", value: "oroInicial" },
+        { label: "Monumento", value: "monumento" }
       ]
     };
   },
@@ -51,12 +50,16 @@ export default {
     ...mapMutations("cardModule", ["AGREGAR_A_MAZO"]),
 
     onCardClick: function(carta) {
-      this.AGREGAR_A_MAZO({ carta, zonaMazo: this.agregarAZona });
+      this.AGREGAR_A_MAZO({ carta, zonaMazo: this.selector.value });
     }
   },
 
   computed: {
-    ...mapGetters("cardModule", ["getGrillaCartas"])
+    ...mapGetters("cardModule", [
+      "getGrillaCartas",
+      "getGrillaFiltradaPorTipo",
+      "getGrillaFiltradaPorTexto"
+    ])
   },
 
   components: {}
