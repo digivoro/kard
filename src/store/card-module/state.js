@@ -72,6 +72,8 @@ export default function() {
       }
     ],
 
+    mazos: [],
+
     mazosJugador: [],
 
     filtros: {

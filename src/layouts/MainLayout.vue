@@ -131,11 +131,17 @@ export default {
           link: "/constructor"
         },
         {
-          title: "Perfil",
-          caption: "Información de tu cuenta",
-          icon: "person_pin",
-          link: "/perfil"
+          title: "Mazos",
+          caption: "Explora los mazos de la comunidad",
+          icon: "dashboard",
+          link: "/mazos"
         }
+        // {
+        //   title: "Perfil",
+        //   caption: "Información de tu cuenta",
+        //   icon: "person_pin",
+        //   link: "/perfil"
+        // },
       ]
     };
   },

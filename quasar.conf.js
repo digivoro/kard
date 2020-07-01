@@ -103,7 +103,7 @@ module.exports = function(/* ctx */) {
       importStrategy: "auto",
 
       // Quasar plugins
-      plugins: ["LoadingBar", "Notify"]
+      plugins: ["Notify"]
     },
 
     // animations: 'all', // --- includes all animations

@@ -6,6 +6,10 @@ export function INICIALIZAR_DATOS(state, dataCartas) {
   });
 }
 
+export function INICIALIZAR_MAZOS(state, dataMazos) {
+  state.mazos = dataMazos;
+}
+
 export function AGREGAR_A_MAZO(state, { carta, zonaMazo }) {
   let mazo = state.mazoConstruido[zonaMazo];
   if (zonaMazo === "principal" || zonaMazo === "sideboard") {

@@ -179,6 +179,7 @@
 
 <script>
 import { mapGetters, mapActions, mapState, mapMutations } from "vuex";
+import { Notify } from "quasar";
 
 export default {
   name: "DeckList",
@@ -211,7 +212,14 @@ export default {
     },
 
     onGuardarClick() {
-      this.guardarMazo();
+      if (!this.sesion.usuarioActual) {
+        Notify.create({
+          message: `Inicia sesión para guardar mazos :)`,
+          type: "warning"
+        });
+      } else {
+        this.guardarMazo();
+      }
     },
 
     onQuitarClick(carta, zonaMazo) {
@@ -223,6 +231,7 @@ export default {
 
   computed: {
     ...mapState("cardModule", ["mazoConstruido"]),
+    ...mapState(["sesion"]),
     ...mapGetters("cardModule", [
       "getMazoPrincipal",
       "getSideboard",

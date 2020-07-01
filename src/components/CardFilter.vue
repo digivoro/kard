@@ -26,7 +26,7 @@
         <q-separator dark vertical class="q-mx-md gt-xs"></q-separator>
 
         <!-- Filtro Avanzado -->
-        <div class="col col-sm">
+        <!-- <div class="col col-sm">
           <div class="row q-col-gutter-sm">
             <div class="col">
               <q-btn
@@ -48,9 +48,9 @@
               </q-btn>
             </div>
           </div>
-        </div>
+        </div> 
 
-        <q-separator dark vertical class="q-mx-md gt-xs"></q-separator>
+        <q-separator dark vertical class="q-mx-md gt-xs"></q-separator> -->
 
         <!-- Filtros Tipos -->
         <div class="col-12 col-sm-7 order-xs-last">
