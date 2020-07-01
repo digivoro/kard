@@ -35,6 +35,14 @@ export default function(/* { ssrContext } */) {
         state.advancedFilter = !state.advancedFilter;
       },
 
+      ACTUALIZAR_INPUT_LOGIN_EMAIL(state, valor) {
+        state.formLogin.email = valor;
+      },
+
+      ACTUALIZAR_INPUT_LOGIN_PASSWORD(state, valor) {
+        state.formLogin.password = valor;
+      },
+
       ACTUALIZAR_INPUT_REGISTRO_EMAIL(state, valor) {
         state.formRegistro.email = valor;
       },
@@ -49,7 +57,13 @@ export default function(/* { ssrContext } */) {
 
       REGISTRAR_USUARIO(state) {},
 
-      LOGIN_USUARIO(state) {},
+      LOGIN_USUARIO(state, usuario) {
+        state.sesion.usuarioActual = usuario;
+      },
+
+      LOGOUT(state) {
+        state.sesion.usuarioActual = null;
+      },
 
       SET_CURRENT_USER(state, usuarioActual) {
         state.sesion.usuarioActual = usuarioActual;
@@ -71,6 +85,39 @@ export default function(/* { ssrContext } */) {
           });
         } catch (error) {
           console.log(error);
+          Notify.create({ message: error.message, type: "negative" });
+        }
+      },
+
+      loginUsuario: async function({ commit, state }) {
+        let { email, password } = state.formLogin;
+        try {
+          let res = await firebaseAuth.signInWithEmailAndPassword(
+            email,
+            password
+          );
+          console.log(res);
+
+          commit("LOGIN_USUARIO", res.user.email);
+          Notify.create({
+            message: `Iniciaste sesión como ${res.user.email}`,
+            type: "positive"
+          });
+        } catch (error) {
+          Notify.create({ message: error.message, type: "negative" });
+        }
+      },
+
+      logout: async function({ commit }) {
+        try {
+          let res = await firebaseAuth.signOut();
+          console.log(res);
+          Notify.create({
+            message: `Cerraste sesión correctamente`,
+            type: "positive"
+          });
+          commit("LOGOUT");
+        } catch (error) {
           Notify.create({ message: error.message, type: "negative" });
         }
       },

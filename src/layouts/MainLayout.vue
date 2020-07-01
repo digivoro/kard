@@ -16,11 +16,29 @@
         />
         <q-toolbar-title class="cinzel-black text-h4">Kard</q-toolbar-title>
 
-        <q-form v-if="!sesion.usuarioActual" class="row q-gutter-md">
-          <q-btn dark color="accent" push no-caps @click="loginDialog = true"
-            >Iniciar Sesión</q-btn
+        <q-btn
+          v-if="!sesion.usuarioActual"
+          dark
+          color="accent"
+          push
+          no-caps
+          @click="loginDialog = true"
+        >
+          Iniciar Sesión
+        </q-btn>
+        <div v-else>
+          Hola
+          <span class="text-bold"> {{ sesion.usuarioActual }}! </span>
+          <q-btn
+            color="red"
+            text-color="white"
+            push
+            no-caps
+            @click="onLogoutClick"
           >
-        </q-form>
+            Cerrar Sesión
+          </q-btn>
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -51,6 +69,7 @@
           </q-card-section>
           <q-card-section class="q-pt-none q-gutter-md">
             <q-input
+              v-model="loginEmail"
               filled
               autofocus
               bg-color="white"
@@ -58,6 +77,7 @@
               type="text"
             ></q-input>
             <q-input
+              v-model="loginPassword"
               filled
               bg-color="white"
               label="Contraseña"
@@ -65,14 +85,13 @@
             ></q-input>
           </q-card-section>
           <q-card-actions align="right" class="text-primary">
-            <q-btn flat label="Cancel" v-close-popup />
+            <q-btn flat label="Mejor no" v-close-popup />
             <q-btn
               dark
               color="accent"
               label="Iniciar Sesión"
               @click="onLoginClick"
               push
-              no-caps
               v-close-popup
             ></q-btn>
           </q-card-actions>
@@ -85,7 +104,7 @@
 
 <script>
 import EssentialLink from "components/EssentialLink.vue";
-import { mapState } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "MainLayout",
@@ -96,7 +115,6 @@ export default {
 
   data() {
     return {
-      prompt: false,
       loginDialog: false,
       leftDrawerOpen: true,
       essentialLinks: [
@@ -122,8 +140,42 @@ export default {
     };
   },
 
+  methods: {
+    ...mapActions(["loginUsuario", "logout"]),
+    ...mapMutations([
+      "ACTUALIZAR_INPUT_LOGIN_EMAIL",
+      "ACTUALIZAR_INPUT_LOGIN_PASSWORD"
+    ]),
+
+    onLoginClick() {
+      this.loginUsuario();
+    },
+
+    onLogoutClick() {
+      this.logout();
+    }
+  },
+
   computed: {
-    ...mapState(["sesion"])
+    ...mapState(["sesion", "formLogin"]),
+
+    loginEmail: {
+      get() {
+        return this.formLogin.email;
+      },
+      set(valor) {
+        this.ACTUALIZAR_INPUT_LOGIN_EMAIL(valor);
+      }
+    },
+
+    loginPassword: {
+      get() {
+        return this.formLogin.password;
+      },
+      set(valor) {
+        this.ACTUALIZAR_INPUT_LOGIN_PASSWORD(valor);
+      }
+    }
   },
 
   mounted() {
