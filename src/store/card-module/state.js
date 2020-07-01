@@ -66,8 +66,8 @@ export default function() {
         id: 7,
         nombre: "oro_habilidad",
         label: "Oro Habilidad",
-        image: "icons/png/oro-color.png",
-        disabledImage: "icons/png/oro-line.png",
+        image: "icons/png/lampara-color.png",
+        disabledImage: "icons/png/lampara-line.png",
         disabled: false
       }
     ],

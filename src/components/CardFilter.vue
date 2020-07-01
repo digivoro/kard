@@ -25,6 +25,7 @@
 
         <q-separator dark vertical class="q-mx-md gt-xs"></q-separator>
 
+        <!-- Filtro Avanzado -->
         <div class="col col-sm">
           <div class="row q-col-gutter-sm">
             <div class="col">
@@ -51,9 +52,10 @@
 
         <q-separator dark vertical class="q-mx-md gt-xs"></q-separator>
 
+        <!-- Filtros Tipos -->
         <div class="col-12 col-sm-7 order-xs-last">
           <div class="row q-col-gutter-sm">
-            <div v-for="(tipo, index) in tipos" :key="index" class="col-2">
+            <div v-for="(tipo, index) in tipos" :key="index" class="col">
               <q-btn
                 :color="filtros.tipos[tipo.nombre] ? 'accent' : 'grey'"
                 size="lg"
@@ -72,8 +74,8 @@
                     } text-black cinzel-bold`
                   "
                   content-style="font-size: 16px"
-                  transition-show="rotate"
-                  transition-hide="rotate"
+                  transition-show="flip-up"
+                  transition-hide="flip-down"
                   :offset="[10, 10]"
                 >
                   {{ tipo.label }}

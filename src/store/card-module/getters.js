@@ -15,11 +15,16 @@ export function getMonumento(state) {
 }
 
 export function getGrillaCartas(state, getters) {
-  let grillaFiltrada = getters.grillaFiltradaPorTipo.filter(carta =>
+  // console.log("filtradaPorTipo:", getters.getGrillaFiltradaPorTipo);
+  // console.log("filtradaPorTexto:", getters.getGrillaFiltradaPorTexto);
+  let grillaFiltrada = getters.getGrillaFiltradaPorTipo.filter(carta =>
     getters.getGrillaFiltradaPorTexto.includes(carta)
   );
-
-  return grillaFiltrada;
+  if (grillaFiltrada) {
+    return grillaFiltrada;
+  } else {
+    return state.cartas;
+  }
 }
 
 export function getGrillaFiltradaPorTipo(state) {
@@ -46,9 +51,9 @@ export function getGrillaFiltradaPorTipo(state) {
   return grillaFiltradaPorTipo;
 }
 
-export function getGrillaFiltradaPorTexto(state, getters) {
+export function getGrillaFiltradaPorTexto(state) {
   let textoBuscado = state.filtros.texto.toLowerCase();
-  console.log("texto buscado:", textoBuscado);
+  // console.log("texto buscado:", textoBuscado);
   if (textoBuscado) {
     return state.cartas.filter(carta =>
       `${carta.nombre} ${carta.texto}`.toLowerCase().includes(textoBuscado)

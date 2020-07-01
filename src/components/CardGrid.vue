@@ -20,7 +20,7 @@
       >
         <q-responsive :ratio="231 / 331">
           <q-card @click="onCardClick(carta)">
-            <q-img :src="carta.urlImg" />
+            <q-img class="tarjeta" :src="carta.urlImg" />
           </q-card>
         </q-responsive>
       </div>
@@ -51,19 +51,25 @@ export default {
 
     onCardClick: function(carta) {
       this.AGREGAR_A_MAZO({ carta, zonaMazo: this.selector.value });
-    }
+    },
+
+    zoom: function() {}
   },
 
   computed: {
-    ...mapGetters("cardModule", [
-      "getGrillaCartas",
-      "getGrillaFiltradaPorTipo",
-      "getGrillaFiltradaPorTexto"
-    ])
+    ...mapGetters("cardModule", ["getGrillaCartas"])
   },
 
   components: {}
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tarjeta:hover {
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  top: -25%;
+  z-index: 99;
+}
+</style>
