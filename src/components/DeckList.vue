@@ -132,14 +132,14 @@
       <!-- Acciones -->
       <q-separator />
 
-      <div class="acciones bg-secondary">
+      <div class="acciones bg-primary">
         <!-- Nombre -->
         <q-item class="q-mb-sm">
           <q-item-section avatar>
             <q-icon name="settings" color="white" size="sm" />
           </q-item-section>
           <q-item-section>
-            <q-input dense label="Nombre" v-model="nombre"></q-input>
+            <q-input dark dense label="Nombre" v-model="nombre"></q-input>
           </q-item-section>
         </q-item>
 
@@ -149,12 +149,12 @@
             <q-icon name="settings" color="white" size="sm" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>
+            <q-item-label class="text-white">
               Mazo público: {{ esPublico ? "Si" : "No" }}
             </q-item-label>
           </q-item-section>
           <q-item-section side>
-            <q-toggle v-model="esPublico"></q-toggle>
+            <q-toggle color="orange" v-model="esPublico"></q-toggle>
           </q-item-section>
         </q-item>
 

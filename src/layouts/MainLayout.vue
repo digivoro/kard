@@ -5,7 +5,7 @@
 
     <!-- Header -->
     <q-header elevated>
-      <q-toolbar class="q-my-lg">
+      <q-toolbar>
         <q-btn
           flat
           dense
@@ -26,6 +26,7 @@
         >
           Iniciar Sesión
         </q-btn>
+
         <div v-else>
           Hola
           <span class="text-bold"> {{ sesion.usuarioActual }}! </span>

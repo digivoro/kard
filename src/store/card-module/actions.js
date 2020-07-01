@@ -7,7 +7,7 @@ const mazosRef = firebaseDb.collection("mazos");
 
 export async function obtenerCartas({ commit }) {
   try {
-    let collection = await cartasRef.limit(20).get();
+    let collection = await cartasRef.limit(200).get();
     let cartas = collection.docs.map(doc => {
       return { docId: doc.id, ...doc.data() };
     });

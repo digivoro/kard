@@ -2,10 +2,10 @@
   <q-page class="">
     <div class="row q-col-gutter-lg">
       <div class="col-12 col-md">
-        <div class="q-px-md">
-          <div class="row">
-            <h3 class="col-12">Novedades</h3>
-            <h5 class="col-12">Últimos mazos añadidos</h5>
+        <div class="q-px-md  text-center">
+          <h3 class="col-12 cinzel-regular">Bienvenidos</h3>
+          <div class="col-12">
+            <q-img src="img/logo_myl.png" style="maxWidth: 300px"></q-img>
           </div>
         </div>
       </div>
@@ -76,6 +76,7 @@ export default {
         this.ACTUALIZAR_INPUT_REGISTRO_EMAIL(valor);
       }
     },
+
     password1Input: {
       get() {
         return this.formRegistro.password1;
@@ -84,6 +85,7 @@ export default {
         this.ACTUALIZAR_INPUT_REGISTRO_PASSWORD1(valor);
       }
     },
+
     password2Input: {
       get() {
         return this.formRegistro.password2;

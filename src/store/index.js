@@ -12,10 +12,7 @@ export default function(/* { ssrContext } */) {
       advancedFilter: false,
 
       sesion: {
-        usuarioActual: null,
-        jugador: {
-          idJugador: 0
-        }
+        usuarioActual: null
       },
 
       formRegistro: {
