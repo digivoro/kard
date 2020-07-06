@@ -9,6 +9,9 @@ node_modules
 # Firebase config files
 firebaseConfig.js
 
+# Zip
+kard.zip
+
 # Cordova related directories and files
 /src-cordova/node_modules
 /src-cordova/platforms
